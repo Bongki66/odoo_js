@@ -7,6 +7,7 @@ odoo.define('odoo_js.sale_custom_report', function (require) {
     var SaleCustomReport = AbstractAction.extend({
         template: 'SaleCustomReport',
         events: {
+            'click .o_so_data': '_onSoDataClicked',
         },
         init: function(parent, action) {
             this._super(parent, action);
@@ -26,6 +27,19 @@ odoo.define('odoo_js.sale_custom_report', function (require) {
                     report_lines : datas,
                 }));
             });
+        },
+
+        _onSoDataClicked: function (event) {
+            // stopPropagation: agar tidak mengaktifkan action yang lain
+            // contoh:
+            // <div onclick="functionOne">
+            //      <div onclick="functionTwo"></div>
+            // </div>
+            // agar tidak menjalankan functionOne, functionTwo perlu ditambahkan stopPropagation
+            event.stopPropagation();
+            console.log('click so data');
+            var so_id = $(event.currentTarget).data('res-id');
+            console.log('so_id: '+so_id);
         },
     });
     core.action_registry.add("sale_custom_report", SaleCustomReport);

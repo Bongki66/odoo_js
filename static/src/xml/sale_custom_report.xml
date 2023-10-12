@@ -30,7 +30,7 @@
                     <tbody>
                         <t t-foreach="report_lines" t-as="data">
                             <tr style="border: 1px solid black;">
-                                <td style="border: 0px solid black;">
+                                <td style="border: 0px solid black;" class="o_so_data" t-att-data-res-id="data['so_id']">
                                     <t t-esc="data['name']"/>
                                 </td>
                                 <td>

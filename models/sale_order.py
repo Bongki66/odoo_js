@@ -8,7 +8,7 @@ class SaleOrderInherit(models.Model):
     def get_sale_order(self):
         ret_list = []
         req = (
-            "SELECT sale_order.name, rp.name AS customer, sale_order.amount_total, sale_order.state "
+            "SELECT sale_order.id as so_id, sale_order.name, rp.name AS customer, sale_order.amount_total, sale_order.state "
             "FROM sale_order "
             "Join res_partner rp ON (sale_order.partner_id=rp.id)")
         self.env.cr.execute(req)
