@@ -4,6 +4,7 @@ odoo.define('odoo_js.sale_custom_report', function (require) {
     var core = require('web.core');
     var rpc = require('web.rpc');
     var QWeb = core.qweb;
+    var _t = core._t;
     var SaleCustomReport = AbstractAction.extend({
         template: 'SaleCustomReport',
         events: {
@@ -40,6 +41,15 @@ odoo.define('odoo_js.sale_custom_report', function (require) {
             console.log('click so data');
             var so_id = $(event.currentTarget).data('res-id');
             console.log('so_id: '+so_id);
+            return this.do_action({
+                name: _t('Sale Order'),
+                type: 'ir.actions.act_window',
+                res_model: 'sale.order',
+                res_id: so_id,
+                views: [[false, 'form']],
+                view_mode: 'form',
+                target: 'current',
+            });
         },
     });
     core.action_registry.add("sale_custom_report", SaleCustomReport);

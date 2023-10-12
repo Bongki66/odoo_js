@@ -10,6 +10,6 @@
 
         <!--MENU-->
         <menuitem id="sale_custom_report_menu" action="sale_custom_report_action"
-                  name="Sale Custom Report"/>
+                  name="Sale Custom Report" sequence="450"/>
     </data>
 </odoo>
