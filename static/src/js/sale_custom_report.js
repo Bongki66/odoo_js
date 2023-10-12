@@ -13,23 +13,30 @@ odoo.define('odoo_js.sale_custom_report', function (require) {
         init: function(parent, action) {
             this._super(parent, action);
         },
-        start: function() {
-            var self = this;
-            self.load_data();
+        willStart: function() {
+            return Promise.all([this._super.apply(this, arguments), this.load_data()]);
         },
-        load_data: function () {
+        start: async function() {
+            await this._super(...arguments);
+            this.render_data();
+        },
+        load_data: async function () {
             var self = this;
-            self._rpc({
+            const so_data =  await self._rpc({
                 model: 'sale.order',
                 method: 'get_sale_order',
                 args: [],
-            }).then(function(datas) {
-                self.$('.table_view').html(QWeb.render('SaleTable', {
-                    report_lines : datas,
-                }));
             });
+            this.so_data = so_data;
         },
-
+        render_data: function(){
+            var self = this;
+            if (this.so_data) {
+                this.$('.table_view').html(QWeb.render('SaleTable', {
+                    report_lines : self.so_data,
+                }));
+            }
+        },
         _onSoDataClicked: function (event) {
             // stopPropagation: agar tidak mengaktifkan action yang lain
             // contoh:
