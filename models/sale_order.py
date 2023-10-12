@@ -13,6 +13,5 @@ class SaleOrderInherit(models.Model):
             "Join res_partner rp ON (sale_order.partner_id=rp.id)")
         self.env.cr.execute(req)
         for rec in self.env.cr.dictfetchall():
-            print('rec:', rec)
             ret_list.append(rec)
         return ret_list

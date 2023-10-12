@@ -17,16 +17,16 @@ odoo.define('odoo_js.sale_custom_report', function (require) {
         },
         load_data: function () {
             var self = this;
-                self._rpc({
-                    model: 'sale.order',
-                    method: 'get_sale_order',
-                    args: [],
-                }).then(function(datas) {
-                    self.$('.table_view').html(QWeb.render('SaleTable', {
-                        report_lines : datas,
-                    }));
-                });
-            },
+            self._rpc({
+                model: 'sale.order',
+                method: 'get_sale_order',
+                args: [],
+            }).then(function(datas) {
+                self.$('.table_view').html(QWeb.render('SaleTable', {
+                    report_lines : datas,
+                }));
+            });
+        },
     });
     core.action_registry.add("sale_custom_report", SaleCustomReport);
     return SaleCustomReport;
