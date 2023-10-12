@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--ACTION-->
+        <record id="sale_custom_report_action" model="ir.actions.client">
+            <field name="name">Sale Custom Report</field>
+            <field name="tag">sale_custom_report</field>
+            <field name="target">new</field>
+        </record>
+
+        <!--MENU-->
+        <menuitem id="sale_custom_report_menu" action="sale_custom_report_action"
+                  name="Sale Custom Report"/>
+    </data>
+</odoo>
